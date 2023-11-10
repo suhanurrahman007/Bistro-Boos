@@ -1,3 +1,4 @@
+import BistroBoss from "../../../Share/BistroBoss/BistroBoss";
 import Banner from "../Banner/Banner";
 import Menu from "../Menu/Menu";
 import OnlineOrder from "../OnlineOrder/OnlineOrder";
@@ -8,6 +9,7 @@ const Home = () => {
             <Banner></Banner>
             <OnlineOrder></OnlineOrder>
             <Menu></Menu>
+            <BistroBoss></BistroBoss>
         </div>
     );
 };

@@ -24,7 +24,7 @@ const Menu = () => {
             miniHeader={"FROM OUR MENU"}
           ></SectionTitle>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10 mx-5 md:mx-0">
           {menu.map((item) => (
             <MenuItem item={item} key={item._id}></MenuItem>
           ))}

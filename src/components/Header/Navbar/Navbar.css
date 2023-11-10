@@ -1,0 +1,5 @@
+#sidebar a.active {
+    color: orange;
+    background-color: black;
+}
+

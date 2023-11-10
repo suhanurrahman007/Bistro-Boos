@@ -1,4 +1,5 @@
 import Banner from "../Banner/Banner";
+import Menu from "../Menu/Menu";
 import OnlineOrder from "../OnlineOrder/OnlineOrder";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
         <div>
             <Banner></Banner>
             <OnlineOrder></OnlineOrder>
+            <Menu></Menu>
         </div>
     );
 };

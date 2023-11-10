@@ -13,18 +13,15 @@ import img6 from "../../../assets/home/slide5.jpg";
 import img7 from "../../../assets/home/slide2.jpg";
 import img8 from "../../../assets/home/slide3.jpg";
 import img9 from "../../../assets/home/slide4.jpg";
+import SectionTitle from "../../../components/SectionTitle";
 
 const OnlineOrder = () => {
   return (
     <div className="py-7">
-      <div className="flex flex-col space-y-3 justify-center items-center">
-        <p className="text-lg text-[#D99904] italic">
-          ---From 11:00am to 10:00pm---
-        </p>
-        <hr className="w-72 border" />
-        <h2 className="text-2xl font-semibold">ORDER ONLINE</h2>
-        <hr className="w-72 border" />
-      </div>
+      <SectionTitle
+        header={"From 11:00am to 10:00pm"}
+        miniHeader={"ORDER ONLINE"}
+      ></SectionTitle>
       <>
         <Swiper
           slidesPerView={5}

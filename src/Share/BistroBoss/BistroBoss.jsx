@@ -2,7 +2,7 @@ import CoverTitle from "../../components/CoverTitle";
 const BistroBoss = () => {
     return (
       <div
-        className="bistro-boss-container bg-cover bg-center py-5 md:py-20 mt-5"
+        className="bistro-boss-container bg-cover bg-fixed bg-center py-5 md:py-20 mt-5"
         style={{ backgroundImage: "url(/src/assets/home/chef-service.jpg)" }}
       >
         <CoverTitle

@@ -1,18 +1,19 @@
 import CoverTitle from "../../components/CoverTitle";
+import img from "../../assets/home/featured.jpg"
 const BistroBoss = () => {
     return (
-      <div
-        className="bistro-boss-container bg-cover bg-fixed bg-center py-5 md:py-20 mt-5"
-        style={{ backgroundImage: "url(/src/assets/home/chef-service.jpg)" }}
-      >
+      <section>
         <CoverTitle
+        coverImg={img}
           coverHeader={"Bistro Boss"}
           coverBody={
             "My vainly bends once mystery guessing word, there tell soul maiden a this fiery back with lordly. Mystery with so before sent not soul, pallas darkness said sinking flung, startled."
           }
         ></CoverTitle>
-      </div>
+        ;
+      </section>
     );
 };
 
 export default BistroBoss;
+

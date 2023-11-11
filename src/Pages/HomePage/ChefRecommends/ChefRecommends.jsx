@@ -6,7 +6,7 @@ import img3 from "../../../assets/home/featured.jpg";
 
 const ChefRecommends = () => {
     return (
-      <div>
+      <div className="mt-10">
         <SectionTitle
           header={"CHEF RECOMMENDS"}
           miniHeader={"Should Try"}

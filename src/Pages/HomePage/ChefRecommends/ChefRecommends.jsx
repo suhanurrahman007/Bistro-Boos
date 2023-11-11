@@ -15,7 +15,11 @@ const ChefRecommends = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 ">
           <div className="card shadow-xl">
             <figure className="px-5 pt-5">
-              <img src={img1} alt="CaeserSalad" className="rounded-lg  h-48" />
+              <img
+                src={img1}
+                alt="CaeserSalad"
+                className="rounded-lg h-44 md:h-32  lg:h-48 w-full"
+              />
             </figure>
             <div className="card-body items-center text-center ">
               <h2 className="card-title">Caeser Salad</h2>
@@ -29,7 +33,11 @@ const ChefRecommends = () => {
           </div>
           <div className="card shadow-xl">
             <figure className="px-5 pt-5">
-              <img src={img2} alt="CaeserSalad" className="rounded-lg h-48" />
+              <img
+                src={img2}
+                alt="CaeserSalad"
+                className="rounded-lg h-44 md:h-32 lg:h-48 w-full"
+              />
             </figure>
             <div className="card-body items-center text-center ">
               <h2 className="card-title">Caeser Salad</h2>
@@ -43,7 +51,11 @@ const ChefRecommends = () => {
           </div>
           <div className="card shadow-xl">
             <figure className="px-5 pt-5">
-              <img src={img3} alt="CaeserSalad" className="rounded-lg  h-48" />
+              <img
+                src={img3}
+                alt="CaeserSalad"
+                className="rounded-lg h-44 md:h-32 lg:h-48 w-full"
+              />
             </figure>
             <div className="card-body items-center text-center ">
               <h2 className="card-title">Caeser Salad</h2>

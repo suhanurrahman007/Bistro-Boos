@@ -3,6 +3,7 @@ import Banner from "../Banner/Banner";
 import ChefRecommends from "../ChefRecommends/ChefRecommends";
 import Menu from "../Menu/Menu";
 import OnlineOrder from "../OnlineOrder/OnlineOrder";
+import OurMenu from "../OurMenu/OurMenu";
 import ViewFullMenu from "../ViewFullMenu/ViewFullMenu";
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
             <BistroBoss></BistroBoss>
             <ViewFullMenu></ViewFullMenu>
             <ChefRecommends></ChefRecommends>
+            <OurMenu></OurMenu>
         </div>
     );
 };

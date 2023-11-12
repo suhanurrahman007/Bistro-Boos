@@ -23,6 +23,16 @@ const Navbar = () => {
           Contact Us
         </NavLink>
       </li>
+      <li id="sidebar" className="space-x-7">
+        <NavLink
+          to="/menu"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "active" : ""
+          }
+        >
+          Menu
+        </NavLink>
+      </li>
     </>
   );
   //

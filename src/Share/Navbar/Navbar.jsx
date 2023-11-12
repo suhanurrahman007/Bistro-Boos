@@ -13,16 +13,7 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
-      <li id="sidebar" className="space-x-7">
-        <NavLink
-          to="/contactUs"
-          className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "active" : ""
-          }
-        >
-          Contact Us
-        </NavLink>
-      </li>
+
       <li id="sidebar" className="space-x-7">
         <NavLink
           to="/menu"
@@ -31,6 +22,17 @@ const Navbar = () => {
           }
         >
           Menu
+        </NavLink>
+      </li>
+
+      <li id="sidebar" className="space-x-7">
+        <NavLink
+          to="/contactUs"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "active" : ""
+          }
+        >
+          Contact Us
         </NavLink>
       </li>
     </>

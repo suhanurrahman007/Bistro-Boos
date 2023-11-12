@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import SectionTitle from "../../../components/SectionTitle";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -7,18 +6,13 @@ import "swiper/css/navigation";
 import "@smastrom/react-rating/style.css";
 import { Rating } from "@smastrom/react-rating";
 import { BiSolidQuoteSingleLeft } from "react-icons/bi";
+import useReview from "../../../hooks/useReview";
 
 
 const Testimonials = () => {
-  const [reviews, setReviews] = useState([]);
+  const [reviews] = useReview()
 
-  useEffect(() => {
-    fetch("/reviews.json")
-      .then((res) => res.json())
-      .then((data) => setReviews(data));
-  }, []);
-
-  console.log(reviews);
+  // console.log(reviews);
   return (
     <div className="mt-10">
       <SectionTitle

@@ -9,6 +9,7 @@ import img2 from "../../assets/menu/dessert-bg.jpeg";
 import img3 from "../../assets/menu/pizza-bg.jpg";
 import img4 from "../../assets/menu/salad-bg.jpg";
 import img5 from "../../assets/menu/soup-bg.jpg";
+import { Helmet } from "react-helmet";
 
 
 
@@ -24,6 +25,9 @@ const MenuPage = () => {
 
     return (
       <div className="space-y-8">
+        <Helmet>
+            <title>Bistro Boss - Menu</title>
+        </Helmet>
         <div className="space-y-7">
           <CoverTitle
             coverHeader={"OUR MENU"}

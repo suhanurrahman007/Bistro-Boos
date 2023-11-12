@@ -27,6 +27,17 @@ const Navbar = () => {
 
       <li id="sidebar" className="space-x-7">
         <NavLink
+          to="/shop"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "active" : ""
+          }
+        >
+          Our Shop
+        </NavLink>
+      </li>
+
+      <li id="sidebar" className="space-x-7">
+        <NavLink
           to="/contactUs"
           className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "active" : ""

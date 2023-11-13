@@ -4,6 +4,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import useMenu from "../../hooks/useMenu";
 import FilterShop from "../../components/FilterShop";
+import { Helmet } from "react-helmet";
 
 const OurShop = () => {
     const [menu]  = useMenu()
@@ -15,6 +16,9 @@ const OurShop = () => {
     
     return (
       <div>
+        <Helmet>
+          <title>Bistro Boss - Shop</title>
+        </Helmet>
         <CoverTitle
           coverHeader={"Our Shop"}
           coverBody={"Would you like to try a dish?"}

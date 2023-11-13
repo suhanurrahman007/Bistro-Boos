@@ -4,6 +4,7 @@ import ContactUs from "../Pages/ContactUs/ContactUs";
 import Home from "../Pages/HomePage/Home/Home";
 import MenuPage from "../Pages/MenuPage/MenuPage";
 import OurShop from "../Pages/OurShop/OurShop";
+import Login from "../Pages/Login/Login";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
       },
     ],
   },
+
+  {
+    path: "/login",
+    element: <Login></Login>
+  }
 ]);
 
 export default router

@@ -10,7 +10,7 @@ const Login = () => {
         <Helmet>
           <title>Bistro Boss - Login</title>
         </Helmet>
-        <div className="grid md:grid-cols-2 gap-5 p-5 py-14 bg-[#010313]">
+        <div className="grid md:grid-cols-2 p-5 py-14 bg-[#010313]">
           <div className="flex justify-center items-center">
             <img className="w-full md:w-96" src={img} alt="" />
           </div>
@@ -138,7 +138,7 @@ const Login = () => {
             <p className="mb-7 flex justify-center font-sans text-sm font-light leading-normal text-inherit antialiased">
               <span className="text-white">Do Not have an account?</span>
               <Link
-                to={"/registration"}
+                to={"/signUp"}
                 href="#"
                 className="ml-1 block font-sans text-sm font-bold leading-normal text-[#c5a35e] antialiased"
               >

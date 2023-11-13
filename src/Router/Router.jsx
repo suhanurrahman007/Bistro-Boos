@@ -5,6 +5,7 @@ import Home from "../Pages/HomePage/Home/Home";
 import MenuPage from "../Pages/MenuPage/MenuPage";
 import OurShop from "../Pages/OurShop/OurShop";
 import Login from "../Pages/Login/Login";
+import SignUp from "../Pages/SingUp/SignUp";
 
 const router = createBrowserRouter([
   {
@@ -32,8 +33,12 @@ const router = createBrowserRouter([
 
   {
     path: "/login",
-    element: <Login></Login>
-  }
+    element: <Login></Login>,
+  },
+  {
+    path: "/signUp",
+    element: <SignUp></SignUp>
+  },
 ]);
 
 export default router

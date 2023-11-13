@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
+
 const Navbar = () => {
+  
   const links = (
     <>
       <li id="sidebar" className="space-x-7">

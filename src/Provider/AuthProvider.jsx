@@ -30,10 +30,10 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, github);
   };
 
-  const creteUser = (email, password) => {
-    setIsLoading(true);
-    return createUserWithEmailAndPassword(auth, email, password);
-  };
+  const createUser = (email, password) =>{
+    setIsLoading(true)
+    return createUserWithEmailAndPassword(auth, email, password)
+  }
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -51,14 +51,14 @@ const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    isLoading(true);
+    setIsLoading(true);
     return signOut(auth);
   };
 
   const AuthInfo = {
     user,
     isLoading,
-    creteUser,
+    createUser,
     login,
     logout,
     googleUser,

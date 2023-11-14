@@ -1,5 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
+import useAuth from "../../hooks/useAuth";
+import auth from "../../Config/firebase.config";
 
 const Navbar = () => {
   
@@ -50,7 +52,22 @@ const Navbar = () => {
       </li>
     </>
   );
-  //
+  
+
+  const {user, logout} = useAuth()
+
+  const handleLogout = () =>{
+    logout(auth)
+    .then(result =>{
+      console.log(result.user);
+    })
+    .catch(error =>{
+      console.log(error.message);
+    })
+  }
+
+  
+
   return (
     <div className="navbar fixed opacity-70 z-10 max-w-6xl bg-[#150F2D] text-white">
       <div className="navbar-start">
@@ -78,6 +95,7 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
+
         <a className="btn btn-ghost normal-case text-xl">Bistro Boos</a>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -86,7 +104,13 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link  className="btn btn-outline btn-success w-40" to={"/login"}>Login</Link>
+        {user ? (
+          <button onClick={handleLogout} className="btn btn-outline btn-secondary">Logout</button>
+        ) : (
+          <Link to={"/login"} className="btn btn-outline btn-success">
+            login
+          </Link>
+        )}
       </div>
     </div>
   );

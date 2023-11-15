@@ -2,9 +2,15 @@ import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
 import useAuth from "../../hooks/useAuth";
 import auth from "../../Config/firebase.config";
+import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../hooks/useCart";
 
 const Navbar = () => {
-  
+  const [data] = useCart()
+  console.log(data);
+  // console.log(data.length);
+
+
   const links = (
     <>
       <li id="sidebar" className="space-x-7">
@@ -50,23 +56,33 @@ const Navbar = () => {
           Contact Us
         </NavLink>
       </li>
+
+      <li id="sidebar" className="space-x-7">
+        <NavLink
+          to="/cart"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "active" : ""
+          }
+        >
+          <FaShoppingCart></FaShoppingCart>
+          <div className="badge badge-secondary">+{data?.length}</div>
+        </NavLink>
+      </li>
     </>
   );
-  
 
-  const {user, logout} = useAuth()
+  const { user, logout } = useAuth();
 
-  const handleLogout = () =>{
+  const handleLogout = () => {
     logout(auth)
-    .then(result =>{
-      console.log(result.user);
-    })
-    .catch(error =>{
-      console.log(error.message);
-    })
-  }
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
-  
 
   return (
     <div className="navbar fixed opacity-70 z-10 max-w-6xl bg-[#150F2D] text-white">
@@ -105,7 +121,12 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {user ? (
-          <button onClick={handleLogout} className="btn btn-outline btn-secondary">Logout</button>
+          <button
+            onClick={handleLogout}
+            className="btn btn-outline btn-secondary"
+          >
+            Logout
+          </button>
         ) : (
           <Link to={"/login"} className="btn btn-outline btn-success">
             login

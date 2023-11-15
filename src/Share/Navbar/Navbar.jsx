@@ -59,7 +59,7 @@ const Navbar = () => {
 
       <li id="sidebar" className="space-x-7">
         <NavLink
-          to="/cart"
+          to="/dashboard/manageItems"
           className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "active" : ""
           }

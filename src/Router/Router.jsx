@@ -7,7 +7,12 @@ import OurShop from "../Pages/OurShop/OurShop";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SingUp/SignUp";
 import PrivetRoute from "./PrivetRoute";
-import Cart from "../Pages/Cart/Cart";
+import Dashboard from "../Layout/Dashboard/Dashboard";
+import AddItems from "../Pages/DashboardPages/AddItems/AddItems";
+import ManageItems from "../Pages/DashboardPages/ManageItems/ManageItems";
+import ManageBookings from "../Pages/DashboardPages/ManageBookings/ManageBookings";
+import AllUser from "../Pages/DashboardPages/AllUser/AllUser";
+import UserHome from "../Pages/DashboardPages/UserHome/UserHome";
 
 const router = createBrowserRouter([
   {
@@ -34,13 +39,31 @@ const router = createBrowserRouter([
         path: "shop",
         element: <OurShop></OurShop>,
       },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
       {
-        path: "cart",
-        element: (
-          <PrivetRoute>
-            <Cart></Cart>
-          </PrivetRoute>
-        ),
+        path: "userHome",
+        element: <UserHome></UserHome>
+      },
+      {
+        path: "addItems",
+        element: <AddItems></AddItems>,
+      },
+      {
+        path: "manageItems",
+        element: <ManageItems></ManageItems>,
+      },
+      {
+        path: "manageBookings",
+        element: <ManageBookings></ManageBookings>,
+      },
+      {
+        path: "allUsers",
+        element: <AllUser></AllUser>,
       },
     ],
   },

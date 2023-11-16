@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import usePublicAxios from "../../hooks/usePublicAxios";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,29 +15,39 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
 
-  const { createUser } = useAuth()
+  const { createUser } = useAuth();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
+  const axios = usePublicAxios()
 
   const onSubmit = (data) => {
     // console.log(data);
     createUser(data.email, data.password)
       .then((result) => {
         console.log(result.user);
-        Swal.fire({
-          icon: "success",
-          title: "Wow...",
-          text: "Sign up Successfully....!!",
-        });
-        navigate("/")
+
+        const userInfo ={name: data.name, email: data.email}
+
+        axios.post("/user", userInfo)
+        .then(res =>{
+          // console.log(res.data);
+          if (res.data.insertedId) {
+            Swal.fire({
+              icon: "success",
+              title: "Wow...",
+              text: "Sign up Successfully....!!",
+            });
+            navigate("/");
+          }
+        })
       })
       .catch((error) => {
         console.log(error.message);
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: error.message
+          text: error.message,
         });
       });
   };

@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import usePublicAxios from "../../hooks/usePublicAxios";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -19,6 +20,8 @@ const Login = () => {
   const { login, googleUser, githubUser } = useAuth();
   const location = useLocation()
   const navigate = useNavigate()
+
+  const axios = usePublicAxios()
 
   const form =location?.state?.from?.pathname || "/"
 
@@ -49,13 +52,24 @@ const Login = () => {
     googleUser()
       .then((result) => {
         console.log(result.user);
-        Swal.fire({
-          icon: "success",
-          title: "Wow...",
-          text: "Login Successfully....!!",
-        });
+        const userInfo ={
+          email : result?.user?.email,
+          name : result?.user?.displayName
+        }
+        
+        axios.post("/user", userInfo)
+        
+        .then(res =>{
+          console.log(res.data);
+          Swal.fire({
+            icon: "success",
+            title: "Wow...",
+            text: "Login Successfully....!!",
+          });
 
-        navigate(form, {replace: true})
+          navigate(form, { replace: true });
+        })
+        
       })
       .catch((error) => {
         Swal.fire({

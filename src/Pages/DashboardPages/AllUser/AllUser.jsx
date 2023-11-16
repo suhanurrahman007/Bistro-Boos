@@ -2,10 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../../hooks/useAxios";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
+import Swal from "sweetalert2";
 
 const AllUser = () => {
     const axios = useAxios()
-    const {data} = useQuery({
+    const {data, refetch} = useQuery({
         queryKey: ["user"],
         queryFn: async()=>{
             const res  = await axios.get("/user")
@@ -14,7 +15,35 @@ const AllUser = () => {
     })
 
     const handleDelete =(id) =>{
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            axios
+              .delete(`/user/${id}`)
+              .then((res) => {
+                console.log(res.data);
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your file has been deleted.",
+                  icon: "success",
+                });
+                refetch()
+              })
+          }
+        });
+
+
+
+
         console.log(id);
+        
     }
     return (
       <div>

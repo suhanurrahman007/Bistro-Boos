@@ -64,7 +64,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       return unSubscribe();
     };
-  }, []);
+  }, [publicAxios]);
 
   const login = (email, password) => {
     setIsLoading(true);

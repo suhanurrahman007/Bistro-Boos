@@ -13,6 +13,10 @@ import ManageItems from "../Pages/DashboardPages/ManageItems/ManageItems";
 import ManageBookings from "../Pages/DashboardPages/ManageBookings/ManageBookings";
 import AllUser from "../Pages/DashboardPages/AllUser/AllUser";
 import UserHome from "../Pages/DashboardPages/UserHome/UserHome";
+import AdminHome from "../Pages/DashboardPages/AdminHome/AdminHome";
+import AdminAddItems from "../Pages/DashboardPages/AdminAddItems/AdminAddItems";
+import AdminManageItems from "../Pages/DashboardPages/AdminManageItems/AdminManageItems";
+import AdminManageBookings from "../Pages/DashboardPages/AdminManageBookings/AdminManageBookings";
 
 const router = createBrowserRouter([
   {
@@ -47,7 +51,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "userHome",
-        element: <UserHome></UserHome>
+        element: <UserHome></UserHome>,
       },
       {
         path: "addItems",
@@ -60,6 +64,22 @@ const router = createBrowserRouter([
       {
         path: "manageBookings",
         element: <ManageBookings></ManageBookings>,
+      },
+      {
+        path: "adminHome",
+        element: <AdminHome></AdminHome>,
+      },
+      {
+        path: "adminAddItems",
+        element: <AdminAddItems></AdminAddItems>,
+      },
+      {
+        path: "adminManageItems",
+        element: <AdminManageItems></AdminManageItems>,
+      },
+      {
+        path: "adminManageBookings",
+        element: <AdminManageBookings></AdminManageBookings>,
       },
       {
         path: "allUsers",

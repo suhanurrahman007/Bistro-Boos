@@ -14,6 +14,23 @@ const AllUser = () => {
         }
     })
 
+    const handleAdmin = (id) =>{
+
+      axios.patch(`/user/admin/${id}`)
+      .then(res =>{
+        console.log(res.data);
+        if (res.data.modifiedCount > 0) {
+          refetch()
+          Swal.fire({
+            title: "Admin!",
+            text: "Admin Create Successfully.",
+            icon: "success",
+          });
+        }
+      })
+
+
+    }
     const handleDelete =(id) =>{
         Swal.fire({
           title: "Are you sure?",
@@ -67,9 +84,12 @@ const AllUser = () => {
                   <td>{item?.email}</td>
 
                   <th>
-                    <button className="btn btn-ghost btn-xs">
+                    {item?.role === "admin" ? "Admin" :<button
+                      onClick={() => handleAdmin(item._id)}
+                      className="btn btn-ghost btn-xs"
+                    >
                       <FaEdit></FaEdit>
-                    </button>
+                    </button>}
                   </th>
 
                   <th>

@@ -1,6 +1,9 @@
 import { FaAd, FaBookmark, FaHome, FaMagnet, FaUser } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 const Dashboard = () => {
+
+  const isAdmin = true
+
       const navLinks = (
         <>
           <li id="sidebar" className="space-x-7">
@@ -50,7 +53,7 @@ const Dashboard = () => {
       );
 
 
-      const sidebarLinks = (
+      const UserSidebarLinks = (
         <>
           <li id="sidebar">
             <NavLink
@@ -60,7 +63,7 @@ const Dashboard = () => {
               }
             >
               <FaHome></FaHome>
-              Admin Home
+              User Home
             </NavLink>
           </li>
 
@@ -84,7 +87,7 @@ const Dashboard = () => {
               }
             >
               <FaMagnet></FaMagnet>
-              Manage items
+              My Cart
             </NavLink>
           </li>
 
@@ -97,6 +100,58 @@ const Dashboard = () => {
             >
               <FaBookmark></FaBookmark>
               Manage bookings
+            </NavLink>
+          </li>
+        </>
+      );
+
+      const AdminSidebarLinks = (
+        <>
+          <li id="sidebar">
+            <NavLink
+              to="/dashboard/adminHome"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+              }
+            >
+              <FaHome></FaHome>
+              Admin Home
+            </NavLink>
+          </li>
+
+          <li id="sidebar">
+            <NavLink
+              to="/dashboard/adminAddItems"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+              }
+            >
+              <FaAd></FaAd>
+               Admin Add items
+            </NavLink>
+          </li>
+
+          <li id="sidebar">
+            <NavLink
+              to="/dashboard/adminManageItems"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+              }
+            >
+              <FaMagnet></FaMagnet>
+              Admin Manage items
+            </NavLink>
+          </li>
+
+          <li id="sidebar">
+            <NavLink
+              to="/dashboard/adminManageBookings"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+              }
+            >
+              <FaBookmark></FaBookmark>
+              Admin Manage bookings
             </NavLink>
           </li>
           <li id="sidebar">
@@ -159,7 +214,9 @@ const Dashboard = () => {
             ></label>
             <ul className="menu p-4 w-80 space-y-5 text-lg min-h-full bg-[#d1a054]">
               {/* Sidebar content here */}
-              {sidebarLinks}
+              {
+                isAdmin ? AdminSidebarLinks : UserSidebarLinks
+              }
             </ul>
           </div>
         </div>

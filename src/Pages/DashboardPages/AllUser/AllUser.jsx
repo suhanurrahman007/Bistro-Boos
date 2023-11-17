@@ -9,7 +9,7 @@ const AllUser = () => {
     const {data, refetch} = useQuery({
         queryKey: ["user"],
         queryFn: async()=>{
-            const res  = await axios.get("/user")
+            const res = await axios.get("/user");
             return res.data
         }
     })

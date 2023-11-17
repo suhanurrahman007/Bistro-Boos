@@ -11,15 +11,19 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
+import usePublicAxios from "../hooks/usePublicAxios";
 
 const Google = new GoogleAuthProvider();
 const github = new GithubAuthProvider();
 
 export const AuthContext = createContext(null);
 
+
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState("null");
   const [isLoading, setIsLoading] = useState(true);
+
+  const publicAxios = usePublicAxios()
 
   const googleUser = () => {
     setIsLoading(true);
@@ -36,7 +40,7 @@ const AuthProvider = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  const updateuser = (name) => {
+  const updateUser = (name) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
     });
@@ -45,6 +49,16 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      if (currentUser) {
+        const userInfo = { email: currentUser.email };
+        publicAxios.post("/jwt", userInfo).then((res) => {
+          if (res.data.token) {
+            localStorage.setItem("access-token", res.data.token);
+          }
+        });
+      } else {
+        localStorage.removeItem("access-token");
+      }
       setIsLoading(false);
     });
     return () => {
@@ -70,7 +84,7 @@ const AuthProvider = ({ children }) => {
     logout,
     googleUser,
     githubUser,
-    updateProfile
+    updateUser,
   };
   return (
     <AuthContext.Provider value={AuthInfo}>{children}</AuthContext.Provider>

@@ -17,6 +17,7 @@ import AdminHome from "../Pages/DashboardPages/AdminHome/AdminHome";
 import AdminAddItems from "../Pages/DashboardPages/AdminAddItems/AdminAddItems";
 import AdminManageItems from "../Pages/DashboardPages/AdminManageItems/AdminManageItems";
 import AdminManageBookings from "../Pages/DashboardPages/AdminManageBookings/AdminManageBookings";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -47,7 +48,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivetRoute>
+        <Dashboard></Dashboard>
+      </PrivetRoute>
+    ),
     children: [
       {
         path: "userHome",
@@ -83,7 +88,11 @@ const router = createBrowserRouter([
       },
       {
         path: "allUsers",
-        element: <AllUser></AllUser>,
+        element: (
+          <AdminRoute>
+            <AllUser></AllUser>
+          </AdminRoute>
+        ),
       },
     ],
   },

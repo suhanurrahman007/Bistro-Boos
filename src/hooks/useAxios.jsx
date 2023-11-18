@@ -10,7 +10,7 @@ const useAxios = () => {
   const {logout} = useAuth()
   instance.interceptors.request.use(function (config){
     const token = localStorage.getItem('access-token')
-    console.log("request ", token);
+    // console.log("request ", token);
     config.headers.authorization = `Bearer ${token}`
     return config
   }),(error) =>{
@@ -21,7 +21,7 @@ const useAxios = () => {
     return response
   },async(error) =>{
     const status = error.response.status
-    console.log("Status is "), status;
+    // console.log("Status is "), status;
     if (status === 401 || status === 403) {
       await logout()
       navigate("/login")

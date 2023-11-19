@@ -18,6 +18,7 @@ import AdminAddItems from "../Pages/DashboardPages/AdminAddItems/AdminAddItems";
 import AdminManageItems from "../Pages/DashboardPages/AdminManageItems/AdminManageItems";
 import AdminManageBookings from "../Pages/DashboardPages/AdminManageBookings/AdminManageBookings";
 import AdminRoute from "./AdminRoute";
+import Payment from "../Pages/DashboardPages/Payment/Payment";
 
 const router = createBrowserRouter([
   {
@@ -85,6 +86,10 @@ const router = createBrowserRouter([
       {
         path: "adminManageBookings",
         element: <AdminManageBookings></AdminManageBookings>,
+      },
+      {
+        path: "payment",
+        element: <Payment></Payment>
       },
       {
         path: "allUsers",

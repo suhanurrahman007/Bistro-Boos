@@ -4,6 +4,7 @@ import SectionTitle from "../../../components/SectionTitle";
 import useCart from "../../../hooks/useCart";
 import Swal from "sweetalert2";
 import useAxios from "../../../hooks/useAxios";
+import { Link } from "react-router-dom";
 
 const ManageItems = () => {
   const [cart, refetch] = useCart();
@@ -44,9 +45,22 @@ const ManageItems = () => {
       ></SectionTitle>
 
       <div className="bg-slate-100 p-10">
-        <h1 className="text-3xl mb-5 font-bold text-justify">
-          Total Items : {cart?.length}
-        </h1>
+        <div className="flex justify-between">
+          <h1 className="text-3xl mb-5 font-bold text-justify">
+            Total Items : {cart?.length}
+          </h1>
+          <div>
+            {cart?.length ? (
+              <Link to={"/dashboard/payment"}>
+                <button className="btn btn-accent">Pay</button>
+              </Link>
+            ) : (
+              <button disabled className="btn btn-accent">
+                Pay
+              </button>
+            )}
+          </div>
+        </div>
         <div>
           <div className="overflow-x-auto">
             <table className="table">

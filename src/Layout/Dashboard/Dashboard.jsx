@@ -1,4 +1,4 @@
-import { FaAd, FaBookmark, FaHome, FaMagnet, FaUser } from "react-icons/fa";
+import { FaAd, FaHome, FaMagnet, FaUser } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
 const Dashboard = () => {
@@ -70,18 +70,6 @@ const Dashboard = () => {
 
           <li id="sidebar">
             <NavLink
-              to="/dashboard/addItems"
-              className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "active" : ""
-              }
-            >
-              <FaAd></FaAd>
-              Add items
-            </NavLink>
-          </li>
-
-          <li id="sidebar">
-            <NavLink
               to="/dashboard/manageItems"
               className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "active" : ""
@@ -92,17 +80,6 @@ const Dashboard = () => {
             </NavLink>
           </li>
 
-          <li id="sidebar">
-            <NavLink
-              to="/dashboard/manageBookings"
-              className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "active" : ""
-              }
-            >
-              <FaBookmark></FaBookmark>
-              Manage bookings
-            </NavLink>
-          </li>
         </>
       );
 
@@ -146,24 +123,13 @@ const Dashboard = () => {
 
           <li id="sidebar">
             <NavLink
-              to="/dashboard/adminManageBookings"
-              className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "active" : ""
-              }
-            >
-              <FaBookmark></FaBookmark>
-              Admin Manage bookings
-            </NavLink>
-          </li>
-          <li id="sidebar">
-            <NavLink
               to="/dashboard/allUsers"
               className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "active" : ""
               }
             >
               <FaUser>y</FaUser>
-              All users
+              User Manage
             </NavLink>
           </li>
         </>
@@ -215,9 +181,8 @@ const Dashboard = () => {
             ></label>
             <ul className="menu p-4 w-80 space-y-5 text-lg min-h-full bg-[#d1a054]">
               {/* Sidebar content here */}
-              {
-                isAdmin ? AdminSidebarLinks : UserSidebarLinks
-              }
+              {isAdmin && UserSidebarLinks}
+              {isAdmin ? AdminSidebarLinks : UserSidebarLinks}
             </ul>
           </div>
         </div>

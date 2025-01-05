@@ -25,7 +25,7 @@ const OurShop = () => {
           coverImg={img1}
         ></CoverTitle>
         <div>
-          <Tabs className={"my-10"}>
+          <Tabs className={"my-5"}>
             <TabList className={"flex justify-center items-center mb-8"}>
               <Tab>All</Tab>
               <Tab>pizza</Tab>

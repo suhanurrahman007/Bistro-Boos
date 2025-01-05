@@ -4,11 +4,15 @@ import useAuth from "../../hooks/useAuth";
 import auth from "../../Config/firebase.config";
 import { FaShoppingCart } from "react-icons/fa";
 import useCart from "../../hooks/useCart";
+import useAdmin from "../../hooks/useAdmin";
 
 const Navbar = () => {
   const [data] = useCart()
   console.log(data);
   // console.log(data.length);
+
+  const { user, logout } = useAuth();
+  const { isAdmin } = useAdmin()
 
 
   const links = (
@@ -57,6 +61,32 @@ const Navbar = () => {
         </NavLink>
       </li>
 
+      {user && isAdmin && (
+        <li id="sidebar" className="space-x-7">
+          <NavLink
+            to="/dashboard/adminHome"
+            className={({ isActive, isPending }) =>
+              isPending ? "pending" : isActive ? "active" : ""
+            }
+          >
+            Dashboard
+          </NavLink>
+        </li>
+      )}
+
+      {user && !isAdmin && (
+        <li id="sidebar" className="space-x-7">
+          <NavLink
+            to="/dashboard/userHome"
+            className={({ isActive, isPending }) =>
+              isPending ? "pending" : isActive ? "active" : ""
+            }
+          >
+            Dashboard
+          </NavLink>
+        </li>
+      )}
+
       <li id="sidebar" className="space-x-7">
         <NavLink
           to="/dashboard/manageItems"
@@ -70,8 +100,6 @@ const Navbar = () => {
       </li>
     </>
   );
-
-  const { user, logout } = useAuth();
 
   const handleLogout = () => {
     logout(auth)
@@ -123,13 +151,25 @@ const Navbar = () => {
         {user ? (
           <button
             onClick={handleLogout}
-            className="btn btn-outline btn-secondary"
+            className="text-xl w-32 h-11 mr-9 text-white bg-sky-800 overflow-hidden relative z-10 group hover:text-sky-900 duration-700"
           >
             Logout
+            <span className="bg-sky-900 group-hover:scale-125 scale-0 ease-in-out duration-300 delay-50 size-32 rounded-full absolute mx-auto my-auto inset-0 -z-10"></span>
+            <span className="bg-sky-800 group-hover:scale-125 scale-0 ease-in-out duration-300 delay-100 size-28 rounded-full absolute mx-auto my-auto inset-0 -z-10"></span>
+            <span className="bg-sky-600 group-hover:scale-125 scale-0 ease-in-out duration-300 delay-200 size-24 rounded-full absolute mx-auto my-auto inset-0 -z-10"></span>
+            <span className="bg-sky-500 group-hover:scale-125 scale-0 ease-in-out duration-300 delay-300 size-20 rounded-full absolute mx-auto my-auto inset-0 -z-10"></span>
+            <span className="bg-sky-500 group-hover:scale-125 scale-0 ease-in-out duration-300 delay-[400ms] size-16 rounded-full absolute mx-auto my-auto inset-0 -z-10"></span>
           </button>
         ) : (
-          <Link to={"/login"} className="btn btn-outline btn-success">
-            login
+          <Link to={"/login"}
+            className="text-xl w-32 h-11 mr-9 text-white bg-sky-800 overflow-hidden relative z-10 group hover:text-sky-900 duration-700"
+          >
+            Login
+            <span className="bg-sky-900 group-hover:scale-125 scale-0 ease-in-out duration-300 delay-50 size-32 rounded-full absolute mx-auto my-auto inset-0 -z-10"></span>
+            <span className="bg-sky-800 group-hover:scale-125 scale-0 ease-in-out duration-300 delay-100 size-28 rounded-full absolute mx-auto my-auto inset-0 -z-10"></span>
+            <span className="bg-sky-600 group-hover:scale-125 scale-0 ease-in-out duration-300 delay-200 size-24 rounded-full absolute mx-auto my-auto inset-0 -z-10"></span>
+            <span className="bg-sky-500 group-hover:scale-125 scale-0 ease-in-out duration-300 delay-300 size-20 rounded-full absolute mx-auto my-auto inset-0 -z-10"></span>
+            <span className="bg-sky-500 group-hover:scale-125 scale-0 ease-in-out duration-300 delay-[400ms] size-16 rounded-full absolute mx-auto my-auto inset-0 -z-10"></span>
           </Link>
         )}
       </div>

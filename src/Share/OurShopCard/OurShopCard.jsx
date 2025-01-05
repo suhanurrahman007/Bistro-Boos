@@ -70,8 +70,18 @@ const OurShopCard = ({ item }) => {
         </p>
       </figure>
       <div className="card-body items-center text-center ">
-        <h2 className="card-title">{name}</h2>
-        <p>{recipe}</p>
+        <h2 className="card-title">
+          {name &&
+            (name.split(" ").length > 3
+              ? name.split(" ").slice(0, 2).join(" ")
+              : name)}
+        </h2>
+        <p>
+          {recipe &&
+            (recipe.split(" ").length > 3
+              ? recipe.split(" ").slice(0, 6).join(" ") + "..."
+              : recipe)}
+        </p>
         <div className="card-actions">
           <button
             onClick={handleCart}

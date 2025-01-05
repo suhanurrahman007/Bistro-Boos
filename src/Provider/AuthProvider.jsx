@@ -18,12 +18,11 @@ const github = new GithubAuthProvider();
 
 export const AuthContext = createContext(null);
 
-
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState("null");
   const [isLoading, setIsLoading] = useState(true);
 
-  const publicAxios = usePublicAxios()
+  const publicAxios = usePublicAxios();
 
   const googleUser = () => {
     setIsLoading(true);
@@ -54,12 +53,13 @@ const AuthProvider = ({ children }) => {
         publicAxios.post("/jwt", userInfo).then((res) => {
           if (res.data.token) {
             localStorage.setItem("access-token", res.data.token);
+            setIsLoading(false);
           }
         });
       } else {
         localStorage.removeItem("access-token");
+        setIsLoading(false);
       }
-      setIsLoading(false);
     });
     return () => {
       return unSubscribe();

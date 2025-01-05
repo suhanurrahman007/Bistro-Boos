@@ -104,7 +104,7 @@ const CheckoutForm = () => {
             }}
           />
           <button
-            className="btn my-5 btn-outline btn-success"
+            className="btn my-5 btn-outline w-full btn-success"
             type="submit"
             disabled={!stripe || !clientSecret}
           >

@@ -10,7 +10,6 @@ import PrivetRoute from "./PrivetRoute";
 import Dashboard from "../Layout/Dashboard/Dashboard";
 import AddItems from "../Pages/DashboardPages/AddItems/AddItems";
 import ManageItems from "../Pages/DashboardPages/ManageItems/ManageItems";
-import ManageBookings from "../Pages/DashboardPages/ManageBookings/ManageBookings";
 import AllUser from "../Pages/DashboardPages/AllUser/AllUser";
 import UserHome from "../Pages/DashboardPages/UserHome/UserHome";
 import AdminHome from "../Pages/DashboardPages/AdminHome/AdminHome";
@@ -31,11 +30,7 @@ const router = createBrowserRouter([
       },
       {
         path: "contactUs",
-        element: (
-          <PrivetRoute>
-            <ContactUs></ContactUs>
-          </PrivetRoute>
-        ),
+        element: <ContactUs></ContactUs>,
       },
       {
         path: "menu",
@@ -68,10 +63,6 @@ const router = createBrowserRouter([
         element: <ManageItems></ManageItems>,
       },
       {
-        path: "manageBookings",
-        element: <ManageBookings></ManageBookings>,
-      },
-      {
         path: "adminHome",
         element: <AdminHome></AdminHome>,
       },
@@ -89,7 +80,7 @@ const router = createBrowserRouter([
       },
       {
         path: "payment",
-        element: <Payment></Payment>
+        element: <Payment></Payment>,
       },
       {
         path: "allUsers",
@@ -112,4 +103,4 @@ const router = createBrowserRouter([
   },
 ]);
 
-export default router
+export default router;

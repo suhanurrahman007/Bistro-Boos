@@ -1,29 +1,28 @@
 import { Helmet } from "react-helmet";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
-import { FaGithub } from "react-icons/fa";
-import img from "../../assets/Login/login.png";
-import { useState } from "react";
+// import { FcGoogle } from "react-icons/fc";
+// import { FaGithub } from "react-icons/fa";
+// import img from "../../assets/Login/login.png";
+// import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import usePublicAxios from "../../hooks/usePublicAxios";
-
 const Login = () => {
-  const [showPassword, setShowPassword] = useState(false);
+  // const [showPassword, setShowPassword] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const { login, googleUser, githubUser } = useAuth();
-  const location = useLocation()
-  const navigate = useNavigate()
+  const { login, googleUser } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const axios = usePublicAxios()
+  const axios = usePublicAxios();
 
-  const form =location?.state?.from?.pathname || "/"
+  const form = location?.state?.from?.pathname || "/";
 
   const onLoginSubmit = (data) => {
     // console.log(data);
@@ -36,7 +35,6 @@ const Login = () => {
           text: "Login Successfully....!!",
         });
         navigate(form, { replace: true });
-
       })
       .catch((error) => {
         Swal.fire({
@@ -52,24 +50,24 @@ const Login = () => {
     googleUser()
       .then((result) => {
         console.log(result.user);
-        const userInfo ={
-          email : result?.user?.email,
-          name : result?.user?.displayName
-        }
-        
-        axios.post("/user", userInfo)
-        
-        .then(res =>{
-          console.log(res.data);
-          Swal.fire({
-            icon: "success",
-            title: "Wow...",
-            text: "Login Successfully....!!",
+        const userInfo = {
+          email: result?.user?.email,
+          name: result?.user?.displayName,
+        };
+
+        axios
+          .post("/user", userInfo)
+
+          .then((res) => {
+            console.log(res.data);
+            Swal.fire({
+              icon: "success",
+              title: "Wow...",
+              text: "Login Successfully....!!",
+            });
+
+            navigate(form, { replace: true });
           });
-
-          navigate(form, { replace: true });
-        })
-        
       })
       .catch((error) => {
         Swal.fire({
@@ -80,74 +78,73 @@ const Login = () => {
       });
   };
 
-  const onGithubSubmit = () => {
-    // console.log(data);
-    githubUser()
-      .then((result) => {
-        console.log(result.user);
-        Swal.fire({
-          icon: "success",
-          title: "Wow...",
-          text: "Login Successfully....!!",
-        });
-        navigate(form, { replace: true });
-
-      })
-      .catch((error) => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: error.message,
-        });
-      });
-  };
+  // const onGithubSubmit = () => {
+  //   // console.log(data);
+  //   githubUser()
+  //     .then((result) => {
+  //       console.log(result.user);
+  //       Swal.fire({
+  //         icon: "success",
+  //         title: "Wow...",
+  //         text: "Login Successfully....!!",
+  //       });
+  //       navigate(form, { replace: true });
+  //     })
+  //     .catch((error) => {
+  //       Swal.fire({
+  //         icon: "error",
+  //         title: "Oops...",
+  //         text: error.message,
+  //       });
+  //     });
+  // };
   return (
     <div>
       <Helmet>
         <title>Bistro Boss - Login</title>
       </Helmet>
-      <div className="grid md:grid-cols-2 p-5 py-14 bg-[#010313]">
-        <div className="flex justify-center items-center">
-          <img className="w-full md:w-96" src={img} alt="" />
-        </div>
-
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-[#0e0d21] ">
-          <Link
-            to={"/"}
-            className="text-3xl mt-4 font-extrabold text-center text-[#c29a4b] text-opacity-50"
-          >
-            Sign In Please
-          </Link>
-
-          <form onSubmit={handleSubmit(onLoginSubmit)} className="card-body ">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-white">
-                  Email <span className="text-red-700">*</span>
-                </span>
-              </label>
+      <div className="flex h-full items-center justify-center mt-10 md:p-0">
+        <div className="flex h-full w-full overflow-hidden rounded-xl shadow-md">
+          {/* design side  */}
+          <div className="relative hidden items-center justify-center bg-blue-300 md:flex md:w-[50%]">
+            <div className="absolute -top-2 left-[20%] h-16 w-16 rounded-full bg-gradient-to-br from-white via-blue-300 to-blue-400"></div>
+            <div className="absolute bottom-[18%] left-[20%] h-20 w-20 rounded-full bg-gradient-to-br from-white via-blue-300 to-blue-400"></div>
+            <div className="absolute -right-7 top-[50%] h-14 w-14 -translate-y-1/2 rounded-full bg-gradient-to-br from-white via-blue-300 to-blue-400 transition-all"></div>
+            <div className="absolute left-[50%] top-[22%] h-24 w-24 -translate-x-1/2 rounded-full bg-gradient-to-br from-white via-blue-300 to-blue-400"></div>
+            <div className="z-10 space-y-2 text-center">
+              <h2 className="text-3xl font-medium text-white/80">
+                Welcome Back
+              </h2>
+              <p className="animate-pulse text-sm text-white/60">
+                Please Enter You Information
+              </p>
+            </div>
+          </div>
+          {/* form side  */}
+          <div className="flex w-full flex-col justify-center bg-white py-10 lg:w-[60%] dark:bg-zinc-900">
+            <h2 className="pb-8 text-center text-3xl font-semibold tracking-tight text-blue-400">
+              Sign In
+            </h2>
+            <form
+              onSubmit={handleSubmit(onLoginSubmit)}
+              className="flex w-full flex-col items-center justify-center gap-4"
+            >
               <input
+                className="w-[80%] rounded-lg border border-blue-400 bg-transparent py-2 pl-4 text-zinc-600 focus:outline-none focus:ring-2 focus:ring-blue-300/50 md:w-[60%] dark:text-zinc-400"
                 type="email"
+                placeholder="Email"
                 name="email"
                 {...register("email", { required: true })}
-                placeholder="Enter your email"
-                className="input bg-black text-white input-bordered placeholder:text-xs"
-                required
               />
               {errors.email && (
                 <span className="text-red-700 mt-3 text-xs">
                   This field is required
                 </span>
               )}
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-white">
-                  Password <span className="text-red-700">*</span>
-                </span>
-              </label>
               <input
-                type={showPassword ? "text" : "password"}
+                className="w-[80%] rounded-lg border border-blue-400 bg-transparent py-2 pl-4 text-zinc-600 focus:outline-none focus:ring-2 focus:ring-blue-300/50 md:w-[60%] dark:text-zinc-400"
+                type="password"
+                placeholder="Password"
                 name="password"
                 {...register("password", {
                   required: true,
@@ -155,9 +152,6 @@ const Login = () => {
                   minLength: 6,
                   pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
                 })}
-                placeholder="Enter your new password"
-                className="input input-bordered bg-black text-white placeholder:text-xs"
-                required
               />
               {errors.password?.type === "required" && (
                 <p className="text-red-700 mt-3 text-xs">
@@ -183,101 +177,44 @@ const Login = () => {
                   characters, digits, and lowercase letters.
                 </p>
               )}
-              <label className="label flex justify-end">
-                <a
-                  href="#"
-                  className="label-text-alt link link-hover text-blue-700 hover:text-blue-900"
-                >
-                  Forgot password?
-                </a>
-              </label>
-
-              <div className="inline-flex items-center">
-                <label
-                  className="relative flex cursor-pointer items-center rounded-full p-3"
-                  htmlFor="checkbox"
-                  data-ripple-dark="true"
-                >
-                  <input
-                    onClick={() => setShowPassword(!showPassword)}
-                    type="checkbox"
-                    className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-pink-500 checked:bg-pink-500 checked:before:bg-pink-500 hover:before:opacity-10"
-                    id="checkbox"
-                  />
-                  <span className="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-3.5 w-3.5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      stroke="currentColor"
-                      // stroke-width="1"
-                    >
-                      <path
-                        //   fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        //   clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </span>
-                </label>
-                <label
-                  className="mt-px cursor-pointer select-none font-light text-gray-700"
-                  htmlFor="checkbox"
-                >
-                  <span className="text-white">
-                    {showPassword ? "Hide Password" : "Show Password"}
-                  </span>
-                </label>
-              </div>
-            </div>
-
-            <div className="form-control mt-6">
+              <p className="text-[14px] text-gray-400">
+                Do not have an account ?{" "}
+                <Link to="/signUp" className="text-blue-400">
+                  Create one
+                </Link>
+              </p>
               <button
+                className="uppercase w-[80%] rounded-lg bg-blue-400 px-6 py-2 font-medium text-white outline-none hover:bg-blue-500 md:w-[60%]"
                 type="submit"
-                className="btn border-none text-white bg-[#2c1e6d] hover:bg-[#140d32]"
               >
-                Log In
+                Submit
               </button>
+            </form>
+            {/* divider  */}
+            <div className="my-8 flex items-center px-8">
+              <hr className="flex-1 border-blue-400" />
+              <div className="mx-4 text-blue-400">OR</div>
+              <hr className="flex-1 border-blue-400" />
             </div>
-          </form>
-
-          <span className="flex justify-center items-center px-9 -mt-6 mb-3">
-            <div className="border border-gray-800 w-full h-0"></div>{" "}
-            <span className="px-3 text-white">Or</span>{" "}
-            <div className="border border-gray-800 w-full h-0"></div>
-          </span>
-
-          <div className="text-3xl px-7 space-y-5 mb-4">
+            {/* sign with google */}
             <button
               onClick={onGoogleSubmit}
-              type="submit"
-              className="btn btn-outline btn-[#140d32] w-full text-white bg-[#0e0d21] hover:bg-[#140d32]"
+              className="group mx-auto flex h-[50px] w-fit items-center overflow-hidden rounded-full shadow-md outline-none ring-1 ring-blue-400"
             >
-              <FcGoogle className="transition-all text-xl hover:scale-125"></FcGoogle>
-              <span className="normal-case text-xs">Sign in with Google</span>
-            </button>
-
-            <button
-              onClick={onGithubSubmit}
-              type="submit"
-              className="btn btn-outline btn-[#140d32] w-full text-white bg-[#0e0d21] hover:bg-[#140d32]"
-            >
-              <FaGithub className="text-xl transition-all hover:scale-125"></FaGithub>
-              <span className="normal-case text-xs">Sign in with Github</span>
+              <div className="relative z-20 flex h-full items-center bg-blue-400 px-4 text-lg text-white duration-300 group-hover:bg-transparent group-hover:text-blue-400">
+                Signin with
+              </div>
+              <span className="flex h-full items-center px-4 text-xl font-bold text-blue-400 duration-300 group-hover:bg-blue-400 group-hover:text-white">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 32 32"
+                  className="size-5 fill-current"
+                >
+                  <path d="M16.318 13.714v5.484h9.078c-0.37 2.354-2.745 6.901-9.078 6.901-5.458 0-9.917-4.521-9.917-10.099s4.458-10.099 9.917-10.099c3.109 0 5.193 1.318 6.38 2.464l4.339-4.182c-2.786-2.599-6.396-4.182-10.719-4.182-8.844 0-16 7.151-16 16s7.156 16 16 16c9.234 0 15.365-6.49 15.365-15.635 0-1.052-0.115-1.854-0.255-2.651z"></path>
+                </svg>
+              </span>
             </button>
           </div>
-
-          <p className="mb-7 flex justify-center font-sans text-sm font-light leading-normal text-inherit antialiased">
-            <span className="text-white">Do Not have an account?</span>
-            <Link
-              to={"/signUp"}
-              href="#"
-              className="ml-1 block font-sans text-sm font-bold leading-normal text-[#c5a35e] antialiased"
-            >
-              Sign Up
-            </Link>
-          </p>
         </div>
       </div>
     </div>

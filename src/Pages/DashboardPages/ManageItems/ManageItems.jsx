@@ -8,8 +8,8 @@ import { Link } from "react-router-dom";
 
 const ManageItems = () => {
   const [cart, refetch] = useCart();
-  const axios = useAxios()
-  //   console.log(cart);
+  const axios = useAxios();
+
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -21,22 +21,18 @@ const ManageItems = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`/cart/${id}`)
-        .then(res =>{
-          console.log(res.data);
+        axios.delete(`/cart/${id}`).then((res) => {
           Swal.fire({
             title: "Deleted!",
-            text: "Your file has been deleted.",
+            text: "Your item has been deleted.",
             icon: "success",
           });
-          refetch()
-        })
-
-        
+          refetch();
+        });
       }
     });
-
   };
+
   return (
     <div className="mt-7">
       <SectionTitle
@@ -44,28 +40,27 @@ const ManageItems = () => {
         miniHeader={"MANAGE ALL ITEMS"}
       ></SectionTitle>
 
-      <div className="bg-slate-100 p-10">
-        <div className="flex justify-between">
-          <h1 className="text-3xl mb-5 font-bold text-justify">
-            Total Items : {cart?.length}
+      <div className="bg-white p-10 shadow-lg rounded-lg">
+        <div className="flex justify-between items-center mb-5">
+          <h1 className="text-3xl font-bold text-gray-800">
+            Total Items: {cart?.length}
           </h1>
           <div>
             {cart?.length ? (
               <Link to={"/dashboard/payment"}>
-                <button className="btn btn-accent">Pay</button>
+                <button className="btn btn-accent btn-outline">Pay</button>
               </Link>
             ) : (
-              <button disabled className="btn btn-accent">
+              <button disabled className="btn btn-accent btn-outline">
                 Pay
               </button>
             )}
           </div>
         </div>
         <div>
-          <div className="overflow-x-auto">
-            <table className="table">
-              {/* head */}
-              <thead>
+          <div className="overflow-x-auto rounded-lg shadow-md">
+            <table className="table table-zebra w-full">
+              <thead className="bg-gray-100 text-gray-700">
                 <tr>
                   <th>No</th>
                   <th>ITEM IMAGE</th>
@@ -77,36 +72,39 @@ const ManageItems = () => {
               </thead>
               <tbody>
                 {cart?.map((item, index) => (
-                  <tr key={item._id}>
-                    <th>{index + 1}</th>
+                  <tr key={item._id} className="hover:bg-gray-50">
+                    <td className="text-center">{index + 1}</td>
                     <td>
                       <div className="flex items-center gap-3">
                         <div className="avatar">
                           <div className="mask mask-squircle w-12 h-12">
                             <img
                               src={item?.image}
-                              alt="Avatar Tailwind CSS Component"
+                              alt="Item"
+                              className="object-cover rounded-lg"
                             />
                           </div>
                         </div>
                       </div>
                     </td>
-                    <td>{item?.name}</td>
-                    <td>{item?.price}</td>
-                    <th>
-                      <button className="btn btn-ghost btn-xs">
+                    <td className="text-gray-700 font-medium">{item?.name}</td>
+                    <td className="text-gray-600 font-semibold">
+                      ${item?.price?.toFixed(2)}
+                    </td>
+                    <td>
+                      <button className="btn btn-outline btn-info btn-xs">
                         <FaEdit></FaEdit>
                       </button>
-                    </th>
+                    </td>
 
-                    <th>
+                    <td>
                       <button
                         onClick={() => handleDelete(item._id)}
-                        className="btn btn-ghost btn-xs"
+                        className="btn btn-outline btn-error btn-xs"
                       >
                         <RiDeleteBin6Fill></RiDeleteBin6Fill>
                       </button>
-                    </th>
+                    </td>
                   </tr>
                 ))}
               </tbody>

@@ -77,7 +77,7 @@ const CheckoutForm = () => {
               transactionId: paymentIntent?.id,
               cartIds : cart?.map(item => item?._id),
               menuItemIds : cart?.map(item => item?.menu_Id),
-              status : "pending"
+              status : "success"
             }
             const res = await axios.post("/payment", payment)
             console.log(res.data);

@@ -8,7 +8,8 @@ import useMenu from "../../../hooks/useMenu";
 const AdminManageItems = () => {
   const [menu, refetch] = useMenu();
   const axios = useAxios();
-  //   console.log(cart);
+
+  // Handle Delete
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -21,74 +22,78 @@ const AdminManageItems = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios.delete(`/menu/${id}`).then((res) => {
-          console.log(res.data);
           Swal.fire({
             title: "Deleted!",
-            text: "Your file has been deleted.",
+            text: "Item has been deleted.",
             icon: "success",
           });
-          refetch()
+          refetch();
         });
       }
     });
   };
+
   return (
     <div className="mt-7">
+      {/* Section Title */}
       <SectionTitle
         header={"Hurry Up!"}
         miniHeader={"MANAGE ALL ITEMS"}
       ></SectionTitle>
 
-      <div className="bg-slate-100 p-10">
-        <h1 className="text-3xl mb-5 font-bold text-justify">
-          Total Items : {menu?.length}
+      {/* Table Container */}
+      <div className="bg-white p-10 shadow-md rounded-lg">
+        <h1 className="text-3xl mb-5 font-bold text-gray-800">
+          Total Items: {menu?.length}
         </h1>
         <div>
           <div className="overflow-x-auto">
-            <table className="table">
-              {/* head */}
-              <thead>
+            <table className="table w-full border-collapse">
+              {/* Table Head */}
+              <thead className="bg-gray-100 text-gray-700 uppercase text-sm leading-normal">
                 <tr>
-                  <th>No</th>
-                  <th>ITEM IMAGE</th>
-                  <th>ITEM NAME</th>
-                  <th>PRICE</th>
-                  <th>ACTION</th>
-                  <th>ACTION</th>
+                  <th className="py-3 px-6 text-left">No</th>
+                  <th className="py-3 px-6 text-left">ITEM IMAGE</th>
+                  <th className="py-3 px-6 text-left">ITEM NAME</th>
+                  <th className="py-3 px-6 text-left">PRICE</th>
+                  <th className="py-3 px-6 text-center">EDIT</th>
+                  <th className="py-3 px-6 text-center">DELETE</th>
                 </tr>
               </thead>
-              <tbody>
+              {/* Table Body */}
+              <tbody className="text-gray-600 text-sm font-light">
                 {menu?.map((item, index) => (
-                  <tr key={item._id}>
-                    <th>{index + 1}</th>
-                    <td>
-                      <div className="flex items-center gap-3">
-                        <div className="avatar">
-                          <div className="mask mask-squircle w-12 h-12">
-                            <img
-                              src={item?.image}
-                              alt="Avatar Tailwind CSS Component"
-                            />
-                          </div>
+                  <tr
+                    key={item._id}
+                    className="border-b border-gray-200 hover:bg-gray-100"
+                  >
+                    <td className="py-3 px-6">{index + 1}</td>
+                    <td className="py-3 px-6">
+                      <div className="flex items-center">
+                        <div className="w-12 h-12 rounded-full overflow-hidden">
+                          <img
+                            src={item?.image}
+                            alt="Item"
+                            className="w-full h-full object-cover"
+                          />
                         </div>
                       </div>
                     </td>
-                    <td>{item?.name}</td>
-                    <td>{item?.price}</td>
-                    <th>
-                      <button className="btn btn-ghost btn-xs">
-                        <FaEdit></FaEdit>
+                    <td className="py-3 px-6">{item?.name}</td>
+                    <td className="py-3 px-6">${item?.price}</td>
+                    <td className="py-3 px-6 text-center">
+                      <button className="text-blue-500 hover:text-blue-700 transition-all">
+                        <FaEdit size={18} />
                       </button>
-                    </th>
-
-                    <th>
+                    </td>
+                    <td className="py-3 px-6 text-center">
                       <button
                         onClick={() => handleDelete(item._id)}
-                        className="btn btn-ghost btn-xs"
+                        className="text-red-500 hover:text-red-700 transition-all"
                       >
-                        <RiDeleteBin6Fill></RiDeleteBin6Fill>
+                        <RiDeleteBin6Fill size={18} />
                       </button>
-                    </th>
+                    </td>
                   </tr>
                 ))}
               </tbody>

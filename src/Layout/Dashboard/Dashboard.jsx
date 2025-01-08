@@ -105,7 +105,7 @@ const Dashboard = () => {
               }
             >
               <FaAd></FaAd>
-               Admin Add items
+              Admin Add items
             </NavLink>
           </li>
 
@@ -118,6 +118,18 @@ const Dashboard = () => {
             >
               <FaMagnet></FaMagnet>
               Admin Manage items
+            </NavLink>
+          </li>
+
+          <li id="sidebar">
+            <NavLink
+              to="/dashboard/adminManageOrder"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+              }
+            >
+              <FaMagnet></FaMagnet>
+              Management Order
             </NavLink>
           </li>
 
